@@ -7,7 +7,7 @@ import React from 'react';
 
 const Navbar: FC = () => {
 	return (
-		<nav className='navbar navbar-expand-lg navbar-light bg-light'>
+		<nav className='navbar navbar-expand-lg navbar-light bg-light shadow'>
 			<div className='container d-flex justify-content-between'>
 				<AppLogo />
 				<NavbarDropdown />
