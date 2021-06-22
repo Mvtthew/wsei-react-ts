@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 
+import LatestPublications from '../components/publications/LatestPublications';
 import { Link } from 'react-router-dom';
 import UserCard from '../components/user/UserCard';
 
@@ -32,7 +33,9 @@ const HomeScreen: FC = () => {
 					</Link>
 				</div>
 			</div>
-			<div className='content'></div>
+			<div className='content ps-5'>
+				<LatestPublications />
+			</div>
 		</div>
 	);
 };

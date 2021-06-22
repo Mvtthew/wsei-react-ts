@@ -101,3 +101,17 @@ a {
 		text-decoration: underline;
 	}
 }
+
+.latest-publications {
+	.latest-publications-list {
+		.latest-publication {
+			background-size: cover;
+
+			p {
+				background-color: rgba(#000, 0.5);
+				padding: 0.5rem;
+				color: white;
+			}
+		}
+	}
+}
