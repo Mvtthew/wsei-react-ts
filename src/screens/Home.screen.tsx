@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 import LatestPublications from '../components/publications/LatestPublications';
 import { Link } from 'react-router-dom';
 import UserCard from '../components/user/UserCard';
+import WorkspacesTiles from '../components/workspaces/WorkspacesTiles';
 
 const HomeScreen: FC = () => {
 	return (
@@ -35,6 +36,8 @@ const HomeScreen: FC = () => {
 			</div>
 			<div className='content ps-5'>
 				<LatestPublications />
+				<div className='pt-5'></div>
+				<WorkspacesTiles />
 			</div>
 		</div>
 	);
