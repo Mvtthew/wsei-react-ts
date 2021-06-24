@@ -1,8 +1,15 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { Photo } from '../../store/photosReducer';
+import { Post } from '../../store/postsReducer';
 import React from 'react';
+import { RootState } from '../../store';
+import { useSelector } from 'react-redux';
 
 const LatestPublications: FC = () => {
+	const posts = useSelector<RootState, Post[]>((store) => store.posts);
+	const photos = useSelector<RootState, Photo[]>((state) => state.photos);
+
 	return (
 		<div>
 			<h1>Latest publications</h1>
@@ -12,38 +19,30 @@ const LatestPublications: FC = () => {
 			</Link>
 
 			<div className='d-flex latest-publications mt-4'>
-				<div className='w-50' style={{ height: 250 }}>
-					<img
-						src='https://images.pexels.com/photos/207962/pexels-photo-207962.jpeg?cs=srgb&dl=pexels-pixabay-207962.jpg&fm=jpg'
-						height={250}
-						style={{ width: '100%', objectFit: 'cover' }}
-					/>
-				</div>
+				{posts.map((p, i) =>
+					i < 1 ? (
+						<div className='w-50' style={{ height: 250 }}>
+							<img src={photos[p.id].url} height={250} alt='' style={{ width: '100%', objectFit: 'cover' }} />
+						</div>
+					) : (
+						<></>
+					),
+				)}
+
 				<div className='w-50 d-flex flex-column ps-1 latest-publications-list' style={{ height: 250 }}>
-					<div
-						className='h-100 latest-publication'
-						style={{
-							backgroundImage:
-								'url(https://images.pexels.com/photos/207962/pexels-photo-207962.jpeg?cs=srgb&dl=pexels-pixabay-207962.jpg&fm=jpg)',
-						}}>
-						<p>Lorem ipsum dolor sit amet, adipisicing elit.</p>
-					</div>
-					<div
-						className='h-100 latest-publication my-1'
-						style={{
-							backgroundImage:
-								'url(https://images.pexels.com/photos/207962/pexels-photo-207962.jpeg?cs=srgb&dl=pexels-pixabay-207962.jpg&fm=jpg)',
-						}}>
-						<p>Lorem ipsum dolor sit amet consectetur.</p>
-					</div>
-					<div
-						className='h-100 latest-publication'
-						style={{
-							backgroundImage:
-								'url(https://images.pexels.com/photos/207962/pexels-photo-207962.jpeg?cs=srgb&dl=pexels-pixabay-207962.jpg&fm=jpg)',
-						}}>
-						<p>Lorem ipsum dolor elit.</p>
-					</div>
+					{posts.map((p, i) =>
+						i > 1 && i < 5 ? (
+							<div
+								className='h-100 latest-publication'
+								style={{
+									backgroundImage: `url(${photos[p.id].url})`,
+								}}>
+								<p>{p.title}</p>
+							</div>
+						) : (
+							<></>
+						),
+					)}
 				</div>
 			</div>
 		</div>
