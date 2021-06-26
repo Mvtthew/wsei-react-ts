@@ -180,10 +180,14 @@ a {
 	position: fixed;
 	z-index: 1;
 	z-index: 1;
+	transform: scale(1.4);
 
 	&.hide {
 		opacity: 0;
-		margin-left: 5rem;
+		right: 0;
+		width: 0%;
+		margin-right: 50%;
+		transform: scale(0.1);
 	}
 }
 
