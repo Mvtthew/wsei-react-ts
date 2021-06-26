@@ -2,6 +2,7 @@ import { FC, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import React from 'react';
+import UserSecion from './UserSecion';
 import { useState } from 'react';
 
 interface DropdownLink {
@@ -83,6 +84,12 @@ const NavbarDropdown: FC = () => {
 			path: '/real-estate-contracts',
 			name: 'Real estate contracts',
 		},
+		{
+			iconClass: 'user',
+			hide: true,
+			path: '/user',
+			name: 'User',
+		},
 	];
 
 	const getActiveLink = () => {
@@ -119,7 +126,7 @@ const NavbarDropdown: FC = () => {
 						<input type='text' value={linksFilterQuery} onChange={(e) => setLinksFilterQuery(e.target.value)} placeholder='Filter...' />
 					</div>
 					{links
-						.filter((l) => l.name.toLowerCase().includes(linksFilterQuery.toLowerCase()))
+						.filter((l) => l.name.toLowerCase().includes(linksFilterQuery.toLowerCase()) && !l.hide)
 						.map((link) => (
 							<Link
 								to={link.path}
@@ -131,6 +138,12 @@ const NavbarDropdown: FC = () => {
 								{link.name}
 							</Link>
 						))}
+					<div
+						onClick={() => {
+							setShow(!show);
+						}}>
+						<UserSecion></UserSecion>
+					</div>
 				</div>
 			)}
 		</div>
