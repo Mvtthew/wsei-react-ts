@@ -85,6 +85,12 @@ const NavbarDropdown: FC = () => {
 			name: 'Real estate contracts',
 		},
 		{
+			iconClass: 'folder',
+			hide: true,
+			path: '/workspace',
+			name: 'Workspace',
+		},
+		{
 			iconClass: 'user',
 			hide: true,
 			path: '/user',

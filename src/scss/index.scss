@@ -211,3 +211,14 @@ main {
 		opacity: 1;
 	}
 }
+
+.workspace-header {
+	height: 250px;
+	border-radius: 20px;
+	box-shadow: 0 0 15px rgba(#000, 0.1);
+	border: 1px solid rgba(#000, 0.1);
+	margin-bottom: 4rem;
+	background-image: url('https://g5-assets-cld-res.cloudinary.com/image/upload/x_0,y_611,h_3383,w_6000,c_crop/q_auto,f_auto,fl_lossy,c_fill,g_center,h_406,w_720/v1585084036/g5/g5-c-illbgmu9-storageone-self-storage-client/g5-cl-55zx8t03y-storageone-self-storage/services/andrew-neel-cckf4TsHAuw-unsplash_hv9dtt_wvmj8y.jpg');
+	font-size: 5rem;
+	color: white;
+}
