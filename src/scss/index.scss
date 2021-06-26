@@ -45,6 +45,17 @@ body {
 			border-radius: 20px;
 			z-index: 4;
 
+			.filter {
+				width: 100%;
+				margin-bottom: 1rem;
+				input {
+					border: 1px solid rgba(#000, 0.1);
+					border-radius: 50px;
+					padding: 0.5rem 1rem;
+					width: 100%;
+				}
+			}
+
 			.navbar-dropdown-link {
 				text-decoration: none;
 				color: black;

@@ -13,6 +13,7 @@ interface DropdownLink {
 
 const NavbarDropdown: FC = () => {
 	const [show, setShow] = useState(false);
+	const [linksFilterQuery, setLinksFilterQuery] = useState('');
 	const [activeLink, setActiveLink] = useState<DropdownLink>({
 		hide: false,
 		iconClass: 'home',
@@ -27,6 +28,60 @@ const NavbarDropdown: FC = () => {
 			hide: false,
 			path: '/',
 			name: 'Home',
+		},
+		{
+			iconClass: 'file',
+			hide: false,
+			path: '/publications',
+			name: 'Publications',
+		},
+		{
+			iconClass: 'user',
+			hide: false,
+			path: '/people',
+			name: 'People',
+		},
+		{
+			iconClass: 'building',
+			hide: false,
+			path: '/entities',
+			name: 'Entities',
+		},
+		{
+			iconClass: 'trim',
+			hide: false,
+			path: '/administration',
+			name: 'Administration',
+		},
+		{
+			iconClass: 'coin-stack',
+			hide: false,
+			path: '/client-contract',
+			name: 'Client contract',
+		},
+		{
+			iconClass: 'chair',
+			hide: false,
+			path: '/suplier-contract',
+			name: 'Suplier contract',
+		},
+		{
+			iconClass: 'table',
+			hide: false,
+			path: '/corporate',
+			name: 'Corporate',
+		},
+		{
+			iconClass: 'book-alt',
+			hide: false,
+			path: '/group-norms',
+			name: 'Group norms',
+		},
+		{
+			iconClass: 'bone',
+			hide: false,
+			path: '/real-estate-contracts',
+			name: 'Real estate contracts',
 		},
 	];
 
@@ -46,12 +101,12 @@ const NavbarDropdown: FC = () => {
 	}, [location.pathname]);
 
 	return (
-		<div
-			className='navbar-dropdown'
-			onClick={() => {
-				setShow(!show);
-			}}>
-			<div className='active-link'>
+		<div className='navbar-dropdown'>
+			<div
+				className='active-link'
+				onClick={() => {
+					setShow(!show);
+				}}>
 				<div>
 					<i className={`bx bx-${activeLink.iconClass} pe-2`}></i>
 					{activeLink.name}
@@ -60,12 +115,22 @@ const NavbarDropdown: FC = () => {
 			</div>
 			{show && (
 				<div className='navbar-dropdown-links'>
-					{links.map((link) => (
-						<Link to={link.path} className='navbar-dropdown-link'>
-							<i className={`bx bx-${link.iconClass} pe-2`}></i>
-							{link.name}
-						</Link>
-					))}
+					<div className='filter'>
+						<input type='text' value={linksFilterQuery} onChange={(e) => setLinksFilterQuery(e.target.value)} placeholder='Filter...' />
+					</div>
+					{links
+						.filter((l) => l.name.toLowerCase().includes(linksFilterQuery.toLowerCase()))
+						.map((link) => (
+							<Link
+								to={link.path}
+								className='navbar-dropdown-link d-block py-2'
+								onClick={() => {
+									setShow(!show);
+								}}>
+								<i className={`bx bx-${link.iconClass} pe-2`}></i>
+								{link.name}
+							</Link>
+						))}
 				</div>
 			)}
 		</div>
