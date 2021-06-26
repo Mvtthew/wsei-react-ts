@@ -12,6 +12,7 @@ import { useState } from 'react';
 const ResumeWorkFeed: FC = () => {
 	const posts = useSelector<RootState, Post[]>((store) => store.posts);
 	const users = useSelector<RootState, User[]>((store) => store.users.users);
+	const [selectedUser, setSelectedUser] = useState(0);
 	const [search, setSearch] = useState('');
 	const [page, setPage] = useState(1);
 
@@ -28,12 +29,26 @@ const ResumeWorkFeed: FC = () => {
 					</Link>
 				</div>
 				<div className='text-end'>
-					<input type='text' placeholder='Filter...' className='form-control' value={search} onChange={(e) => setSearch(e.target.value)} />
+					<input
+						type='text'
+						placeholder='Filter...'
+						className='form-control mb-2'
+						value={search}
+						onChange={(e) => setSearch(e.target.value)}
+					/>
+					<button
+						className='btn btn-primary btn-sm'
+						onClick={() => {
+							setSelectedUser(selectedUser === 0 ? 6 : selectedUser === 6 ? 7 : selectedUser === 7 ? 0 : 0);
+						}}>
+						<i className={'bx me-2 ' + (selectedUser === 0 ? 'bx-group' : 'bx-user')}></i>
+						{selectedUser > 0 ? `Posts by ${users[selectedUser].name}` : 'All posts'}
+					</button>
 				</div>
 			</div>
 			<div className='resume-work-feed mt-4'>
 				{posts
-					.filter((p) => p.title.toLowerCase().includes(search.toLowerCase()))
+					.filter((p) => (p.title.toLowerCase().includes(search.toLowerCase()) && selectedUser ? p.userId === selectedUser : true))
 					.map((p, i) =>
 						i < page * pageSize && i > (page - 1) * pageSize ? (
 							<div className='resume-work-feed-item mb-3'>
@@ -42,11 +57,11 @@ const ResumeWorkFeed: FC = () => {
 								<div className='d-flex'>
 									<div>
 										<i className='bx bx-accessibility'></i>
-										{users[p.id % 10].name}
+										{users[p.userId].name}
 									</div>
 									<div className='ms-3'>
 										<i className='bx bx-building'></i>
-										{users[p.id % 10].company.name}
+										{users[p.userId].company.name}
 									</div>
 									<div className='ms-3'>
 										<i className='bx bx-calendar'></i>
