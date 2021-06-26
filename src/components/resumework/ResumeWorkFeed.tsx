@@ -62,19 +62,21 @@ const ResumeWorkFeed: FC = () => {
 						),
 					)}
 			</div>
-			<nav aria-label='Page navigation example'>
-				<ul className='pagination'>
-					{posts.map((p, i) =>
-						i * pageSize <= posts.filter((p) => p.title.toLowerCase().includes(search.toLowerCase())).length ? (
-							<li className={'page-item ' + (i + 1 === page ? 'active' : '')}>
-								<a className='page-link' onClick={() => setPage(i + 1)}>
-									{i + 1}
-								</a>
-							</li>
-						) : null,
-					)}
-				</ul>
-			</nav>
+			{posts.filter((p) => p.title.toLowerCase().includes(search.toLowerCase())).length > 0 && (
+				<nav>
+					<ul className='pagination'>
+						{posts.map((p, i) =>
+							i * pageSize <= posts.filter((p) => p.title.toLowerCase().includes(search.toLowerCase())).length ? (
+								<li className={'page-item ' + (i + 1 === page ? 'active' : '')}>
+									<a className='page-link' onClick={() => setPage(i + 1)}>
+										{i + 1}
+									</a>
+								</li>
+							) : null,
+						)}
+					</ul>
+				</nav>
+			)}
 		</div>
 	);
 };
