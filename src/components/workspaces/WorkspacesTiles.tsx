@@ -15,7 +15,7 @@ const WorkspacesTiles: FC = () => {
 	return (
 		<div>
 			<h1>Workspaces</h1>
-			<Link to='/publications'>
+			<Link to='/workspace'>
 				See all workspaces
 				<i className='bx bx-right-arrow-alt'></i>
 			</Link>
