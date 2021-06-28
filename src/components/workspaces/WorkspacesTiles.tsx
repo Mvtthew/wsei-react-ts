@@ -4,11 +4,13 @@ import { Photo } from '../../store/photosReducer';
 import { Post } from '../../store/postsReducer';
 import React from 'react';
 import { RootState } from '../../store';
+import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 const WorkspacesTiles: FC = () => {
 	const posts = useSelector<RootState, Post[]>((store) => store.posts);
 	const photos = useSelector<RootState, Photo[]>((state) => state.photos);
+	const workspaceRef = useRef<HTMLDivElement>(null);
 
 	return (
 		<div>
@@ -17,7 +19,7 @@ const WorkspacesTiles: FC = () => {
 				See all workspaces
 				<i className='bx bx-right-arrow-alt'></i>
 			</Link>
-			<div className='workspaces-tiles mt-4'>
+			<div className='workspaces-tiles mt-4' ref={workspaceRef}>
 				{posts.map((p, i) =>
 					i > 5 && i < 10 ? (
 						<div className='workspaces-tile'>
@@ -43,6 +45,32 @@ const WorkspacesTiles: FC = () => {
 						<></>
 					),
 				)}
+			</div>
+			<div className='d-flex w-100'>
+				<button
+					className='btn btn-sm btn-outline-info  w-100'
+					onClick={() => {
+						if (workspaceRef.current) {
+							workspaceRef.current.scroll({
+								left: -400,
+								behavior: 'smooth',
+							});
+						}
+					}}>
+					<i className='bx bx-caret-left'></i>
+				</button>
+				<button
+					className='btn btn-sm btn-outline-info w-100'
+					onClick={() => {
+						if (workspaceRef.current) {
+							workspaceRef.current.scroll({
+								left: 400,
+								behavior: 'smooth',
+							});
+						}
+					}}>
+					<i className='bx bx-caret-right'></i>
+				</button>
 			</div>
 		</div>
 	);
