@@ -1,6 +1,7 @@
 import EntitiesScreen from '../screens/Entities.screen';
 import HomeScreen from '../screens/Home.screen';
 import React from 'react';
+import UserScreen from '../screens/User.screen';
 import WorkspaceScreen from '../screens/Workspace.screen';
 
 export interface RouteType {
@@ -13,6 +14,11 @@ const routes: RouteType[] = [
 	{
 		component: HomeScreen,
 		path: '/',
+		exact: true,
+	},
+	{
+		component: UserScreen,
+		path: '/user',
 		exact: true,
 	},
 	{
